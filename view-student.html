@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
+     <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+      <!-- Chart.js for Graphs -->
+      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <title>School system managemnt </title>
+
+   <style>
+      body{
+        font-family: 'Poppins', sans-serif;
+        background-color: #f8f9fa;
+        
+      }
+   </style>
+</head>
+<body class="light-mode">
+    <!-- Navbar -->
+   
+    <nav class="navbar navbar-expand-lg navbar- fixed-top">
+      <div class="container-fluid">
+          <!-- Sidebar Toggle Button -->
+          <button class="btn btn-secondary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasSidebar" aria-controls="offcanvasSidebar">
+              <i class="bi bi-chevron-double-left"></i> &nbsp;Menu
+          </button>
+          
+          <!-- Navbar Brand -->
+  
+          <!-- Navbar Links -->
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+          </button>
+          <style>
+            .navbar-nav .nav-link {
+               color: #1e3c72; /* Sets the text color to white */
+            }
+            /* Optional: Ensure the icons also have the same color */
+            .navbar-nav .nav-link i {
+               
+              color: #1e3c72;
+            }
+        </style>
+        
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+              <!-- Profile Dropdown -->
+              <li class="nav-item dropdown">
+                  <a class="nav-link glow-effect dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      <i class="fa-solid fa-user"></i>&nbsp;Profile
+                  </a>
+                  <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                      <!-- Profile Frame Image -->
+                      <li>
+                          <div class="profile-frame">
+                              <img src="https://via.placeholder.com/100" alt="Profile Image">
+                          </div>
+                      </li>
+                      <!-- Profile Details -->
+                      <li>
+                          <h6 class="dropdown-header">John Doe</h6>
+                      </li>
+                      <li><hr class="dropdown-divider"></li>
+                      <li><a class="dropdown-item" href="#"><i class="fas fa-user-edit"></i> Edit Profile</a></li>
+                      <li><a class="dropdown-item" href="#"><i class="fas fa-cog"></i> Settings</a></li>
+                      <li><a class="dropdown-item" href="#"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+                  </ul>
+              </li>
+          </ul>
+      </div>
+      </div>
+</nav>
+
+<style>
+  /* Glow Effect for Nav Links */
+  .glow-effect:hover {
+      color: #1abc9c !important;
+      text-shadow: 0 0 5px rgba(26, 188, 156, 0.7);
+  }
+
+  /* Profile Image Frame */
+  .profile-frame {
+      width: 100px;
+      height: 100px;
+      border: 4px solid #1abc9c;
+      border-radius: 50%;
+      overflow: hidden;
+      margin: 0 auto 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .profile-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+  }
+
+  /* Dropdown Menu Styling */
+  .dropdown-menu {
+      border: none;
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      width: 250px;
+  }
+
+  .dropdown-header {
+      font-weight: 600;
+      color: #2c3e50;
+      text-align: center;
+      margin-bottom: 10px;
+  }
+
+  .dropdown-item {
+      padding: 8px 16px;
+      border-radius: 5px;
+      transition: background 0.3s;
+  }
+
+  .dropdown-item:hover {
+      background: #f8f9fa;
+  }
+</style>
+<!-- Sidenav (offcanvas) -->
+<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasSidebar" aria-labelledby="offcanvasSidebarLabel">
+    <div class="offcanvas-header">
+      <div id="offcanvasSidebar">
+        <h5 id="offcanvasSidebarLabel">
+          <span id="echoText">School</span>System
+        </h5>
+      </div>
+      <button class="btn-close btn-close-white" type="button" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+
+    <div class="offcanvas-body">
+      <ul class="nav flex-column">
+        <!-- Accordion Item 1: Dashboard -->
+        <li class="nav-item">
+          <a class="glow-nav-link" data-bs-toggle="collapse" href="#dashboardCollapse" role="button" aria-expanded="false" aria-controls="dashboardCollapse">
+            <i class="bi bi-grid"></i> Dashboard
+          </a>
+          <div class="collapse" id="dashboardCollapse">
+            <ul class="nav flex-column ms-3">
+              <li class="nav-item">
+                <a class="nav-link text-secondary" href="#">Overview</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-secondary" href="#">Analytics</a>
+              </li>
+            </ul>
+          </div>
+        </li>
+  
+        <!-- Accordion Item 2: Student Management -->
+        <li class="nav-item">
+          <a class="glow-nav-link" data-bs-toggle="collapse" href="#studentCollapse" role="button" aria-expanded="false" aria-controls="studentCollapse">
+            <i class="bi bi-person-fill"></i> Student Management
+          </a>
+          <div class="collapse" id="studentCollapse">
+            <ul class="nav flex-column ms-3">
+              <li class="nav-item">
+                <a class="nav-link text-secondary" href="#">Add Student</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-secondary" href="#">View Students</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-secondary" href="#">Edit Student</a>
+              </li>
+            </ul>
+          </div>
+        </li>
+  
+        <!-- Accordion Item 3: Teacher Management -->
+        <li class="nav-item">
+          <a class="glow-nav-link" data-bs-toggle="collapse" href="#teacherCollapse" role="button" aria-expanded="false" aria-controls="teacherCollapse">
+            <i class="bi bi-person-badge"></i> Teacher Management
+          </a>
+          <div class="collapse" id="teacherCollapse">
+            <ul class="nav flex-column ms-3">
+              <li class="nav-item">
+                <a class="nav-link text-secondary" href="#">Add Teacher</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-secondary" href="#">View Teachers</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-secondary" href="#">Edit Teacher</a>
+              </li>
+            </ul>
+          </div>
+        </li>
+  
+        <!-- Accordion Item 4: Attendance -->
+        <li class="nav-item">
+          <a class="glow-nav-link" data-bs-toggle="collapse" href="#attendanceCollapse" role="button" aria-expanded="false" aria-controls="attendanceCollapse">
+            <i class="bi bi-calendar-check"></i> Attendance
+          </a>
+          <div class="collapse" id="attendanceCollapse">
+            <ul class="nav flex-column ms-3">
+              <li class="nav-item">
+                <a class="nav-link text-secondary" href="#">Mark Attendance</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-secondary" href="#">View Attendance</a>
+              </li>
+            </ul>
+          </div>
+        </li>
+  
+        <!-- Accordion Item 5: Exams -->
+        <li class="nav-item">
+          <a class="glow-nav-link" data-bs-toggle="collapse" href="#examCollapse" role="button" aria-expanded="false" aria-controls="examCollapse">
+            <i class="bi bi-journal-text"></i> Exams
+          </a>
+          <div class="collapse" id="examCollapse">
+            <ul class="nav flex-column ms-3">
+              <li class="nav-item">
+                <a class="nav-link text-secondary" href="#">Schedule Exam</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-secondary" href="#">View Results</a>
+              </li>
+            </ul>
+          </div>
+        </li>
+  
+        <!-- Accordion Item 6: Fees -->
+        <li class="nav-item">
+          <a class="glow-nav-link" data-bs-toggle="collapse" href="#feesCollapse" role="button" aria-expanded="false" aria-controls="feesCollapse">
+            <i class="bi bi-cash"></i> Fees
+          </a>
+          <div class="collapse" id="feesCollapse">
+            <ul class="nav flex-column ms-3">
+              <li class="nav-item">
+                <a class="nav-link text-secondary" href="#">Collect Fees</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-secondary" href="#">View Fee Records</a>
+              </li>
+            </ul>
+          </div>
+        </li>
+  
+        <!-- Accordion Item 7: Library -->
+        <li class="nav-item">
+          <a class="glow-nav-link" data-bs-toggle="collapse" href="#libraryCollapse" role="button" aria-expanded="false" aria-controls="libraryCollapse">
+            <i class="bi bi-book"></i> Library
+          </a>
+          <div class="collapse" id="libraryCollapse">
+            <ul class="nav flex-column ms-3">
+              <li class="nav-item">
+                <a class="nav-link text-secondary" href="#">Add Book</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-secondary" href="#">Issue Book</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-secondary" href="#">Return Book</a>
+              </li>
+            </ul>
+          </div>
+        </li>
+  
+        <!-- Accordion Item 8: Notifications -->
+        <li class="nav-item">
+          <a class="glow-nav-link" data-bs-toggle="collapse" href="#notificationCollapse" role="button" aria-expanded="false" aria-controls="notificationCollapse">
+            <i class="bi bi-bell"></i> Notifications
+          </a>
+          <div class="collapse" id="notificationCollapse">
+            <ul class="nav flex-column ms-3">
+              <li class="nav-item">
+                <a class="nav-link text-secondary" href="#">Send Notification</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-secondary" href="#">View Notifications</a>
+              </li>
+            </ul>
+          </div>
+        </li>
+  
+        <!-- Accordion Item 9: Reports -->
+        <li class="nav-item">
+          <a class="glow-nav-link" data-bs-toggle="collapse" href="#reportCollapse" role="button" aria-expanded="false" aria-controls="reportCollapse">
+            <i class="bi bi-bar-chart"></i> Reports
+          </a>
+          <div class="collapse" id="reportCollapse">
+            <ul class="nav flex-column ms-3">
+              <li class="nav-item">
+                <a class="nav-link text-secondary" href="#">Generate Report</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-secondary" href="#">View Reports</a>
+              </li>
+            </ul>
+          </div>
+        </li>
+  
+        <!-- Accordion Item 10: Settings -->
+        <li class="nav-item">
+          <a class="glow-nav-link" data-bs-toggle="collapse" href="#settingsCollapse" role="button" aria-expanded="false" aria-controls="settingsCollapse">
+            <i class="bi bi-gear"></i> Settings
+          </a>
+          <div class="collapse" id="settingsCollapse">
+            <ul class="nav flex-column ms-3">
+              <li class="nav-item">
+                <a class="nav-link text-secondary" href="#">General Settings</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-secondary" href="#">User Management</a>
+              </li>
+            </ul>
+          </div>
+        </li>
+                <!-- Accordion Item 4: Admin -->
+      <li class="nav-item">
+        <a class="glow-nav-link" data-bs-toggle="collapse" href="#adminCollapse" role="button" aria-expanded="false" aria-controls="adminCollapse">
+          <i class="bi bi-shield-lock"></i> Admin
+        </a>
+        <div class="collapse" id="adminCollapse">
+          <ul class="nav flex-column ms-3">
+            <li class="nav-item">
+              <a class="nav-link text-secondary" href="#">User Management</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-secondary" href="#">System Settings</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-secondary" href="#">Permissions</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-secondary" href="#">Audit Logs</a>
+            </li>
+          </ul>
+        </div>
+      </li>
+
+      <!-- Accordion Item 5: Profile -->
+      <li class="nav-item">
+        <a class="glow-nav-link" data-bs-toggle="collapse" href="#profileCollapse" role="button" aria-expanded="false" aria-controls="profileCollapse">
+          <i class="bi bi-person-circle"></i> Profile
+        </a>
+        <div class="collapse" id="profileCollapse">
+          <ul class="nav flex-column ms-3">
+            <li class="nav-item">
+              <a class="nav-link text-secondary" href="#">View Profile</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-secondary" href="#">Edit Profile</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-secondary" href="#">Change Password</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-secondary" href="#">Logout</a>
+            </li>
+          </ul>
+        </div>
+      </li>
+      </ul>
+    </div>
+  </div>
+
+  <style>
+    
+    /* Custom Glow Effect for Links */
+    .glow-nav-link {
+      color: #ffffff;
+      text-decoration: none;
+      padding: 10px 15px;
+      border-radius: 5px;
+      transition: all 0.3s ease;
+      display: block;
+    }
+
+    .glow-nav-link:hover {
+      background: rgba(255, 255, 255, 0.1);
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+      transform: translateX(5px);
+    }
+
+    /* Offcanvas Header */
+    .offcanvas-header {
+      background: linear-gradient(135deg, #6a11cb, #2575fc);
+      color: white;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    /* Offcanvas Body */
+    .offcanvas-body {
+      background: #2c3e50;
+      color: white;
+    }
+
+    /* Nested Links */
+    .nav-link.text-secondary {
+      color: #bdc3c7 !important;
+      padding: 8px 15px;
+      transition: all 0.3s ease;
+    }
+
+    .nav-link.text-secondary:hover {
+      color: #ffffff !important;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 5px;
+    }
+
+    /* Accordion Collapse */
+    .collapse {
+      margin-left: 10px;
+      border-left: 2px solid rgba(255, 255, 255, 0.1);
+    }
+
+    /* Close Button */
+    .btn-close.btn-close-white {
+      filter: invert(1);
+    }
+  </style>
+  
+
+  <section class="dashboard-content container my-5 p-5">
+    <h2 class="text-center mb-5">Dashboard</h2>
+    <!-- Tab Content -->
+    <div class="tab-content" id="myTabContent">
+      <!-- Teachers Tab -->
+      <div class="tab-pane fade show active" id="teachers" role="tabpanel" aria-labelledby="teachers-tab">
+        <h5>Total Members: 3</h5>
+
+        <!-- Search Bar -->
+        <div class="d-flex justify-content-end mb-4">
+          <div class="search-bar" style="max-width: 400px;">
+            <input type="text" class="form-control" placeholder="Search Teachers..." aria-label="Search">
+          </div>
+        </div>
+
+        <!-- Table -->
+
+        <div class="table-responsive">
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Student Name</th>
+                <th scope="col">Student ID</th>
+                <th scope="col">Class</th>
+                <th scope="col">Email</th>
+                <th scope="col">Phone</th>
+                <th scope="col">Address</th>
+                <th scope="col">Parent/Guardian Name</th>
+                <th scope="col">Date of Birth</th>
+                <th scope="col">Gender</th>
+                <th scope="col">Status</th>
+                <th scope="col">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">1</th>
+                <td>John Doe</td>
+                <td>STU001</td>
+                <td>Grade 10</td>
+                <td>johndoe@example.com</td>
+                <td>+123 456 7890</td>
+                <td>123 Main St, City</td>
+                <td>Jane Doe</td>
+                <td>2005-05-15</td>
+                <td>Male</td>
+                <td><span class="badge badge-status badge-success">Active</span></td>
+                <td>
+                  <div class="btn-group-vertical d-md-inline-flex d-block">
+                    <button class="btn btn-sm btn-primary me-md-2 mb-2"><i class="fas fa-plus"></i> Add</button>
+                    <button class="btn btn-sm btn-custom me-md-2 mb-2"><i class="fas fa-edit"></i> Update</button>
+                    <button class="btn btn-sm btn-danger"><i class="fas fa-trash"></i> Delete</button>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">2</th>
+                <td>Jane Smith</td>
+                <td>STU002</td>
+                <td>Grade 11</td>
+                <td>janesmith@example.com</td>
+                <td>+987 654 3210</td>
+                <td>456 Elm St, Town</td>
+                <td>Michael Smith</td>
+                <td>2006-08-20</td>
+                <td>Female</td>
+                <td><span class="badge badge-status badge-warning">Inactive</span></td>
+                <td>
+                  <div class="btn-group-vertical d-md-inline-flex d-block">
+                    <button class="btn btn-sm btn-primary me-md-2 mb-2"><i class="fas fa-plus"></i> Add</button>
+                    <button class="btn btn-sm btn-custom me-md-2 mb-2"><i class="fas fa-edit"></i> Update</button>
+                    <button class="btn btn-sm btn-danger"><i class="fas fa-trash"></i> Delete</button>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">3</th>
+                <td>Michael Brown</td>
+                <td>STU003</td>
+                <td>Grade 12</td>
+                <td>michaelbrown@example.com</td>
+                <td>+555 555 5555</td>
+                <td>789 Oak St, Village</td>
+                <td>Sarah Brown</td>
+                <td>2004-11-10</td>
+                <td>Male</td>
+                <td><span class="badge badge-status badge-danger">Suspended</span></td>
+                <td>
+                  <div class="btn-group-vertical d-md-inline-flex d-block">
+                    <button class="btn btn-sm btn-primary me-md-2 mb-2"><i class="fas fa-plus"></i> Add</button>
+                    <button class="btn btn-sm btn-custom me-md-2 mb-2"><i class="fas fa-edit"></i> Update</button>
+                    <button class="btn btn-sm btn-danger"><i class="fas fa-trash"></i> Delete</button>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">4</th>
+                <td>Emily Davis</td>
+                <td>STU004</td>
+                <td>Grade 9</td>
+                <td>emilydavis@example.com</td>
+                <td>+111 222 3333</td>
+                <td>321 Pine St, Suburb</td>
+                <td>David Davis</td>
+                <td>2007-03-25</td>
+                <td>Female</td>
+                <td><span class="badge badge-status badge-success">Active</span></td>
+                <td>
+                  <div class="btn-group-vertical d-md-inline-flex d-block">
+                    <button class="btn btn-sm btn-primary me-md-2 mb-2"><i class="fas fa-plus"></i> Add</button>
+                    <button class="btn btn-sm btn-custom me-md-2 mb-2"><i class="fas fa-edit"></i> Update</button>
+                    <button class="btn btn-sm btn-danger"><i class="fas fa-trash"></i> Delete</button>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">5</th>
+                <td>David Wilson</td>
+                <td>STU005</td>
+                <td>Grade 10</td>
+                <td>davidwilson@example.com</td>
+                <td>+444 555 6666</td>
+                <td>654 Birch St, County</td>
+                <td>Lisa Wilson</td>
+                <td>2005-07-12</td>
+                <td>Male</td>
+                <td><span class="badge badge-status badge-warning">Inactive</span></td>
+                <td>
+                  <div class="btn-group-vertical d-md-inline-flex d-block">
+                    <button class="btn btn-sm btn-primary me-md-2 mb-2"><i class="fas fa-plus"></i> Add</button>
+                    <button class="btn btn-sm btn-custom me-md-2 mb-2"><i class="fas fa-edit"></i> Update</button>
+                    <button class="btn btn-sm btn-danger"><i class="fas fa-trash"></i> Delete</button>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+       
+      </div>
+
+      <!-- Students Tab -->
+      
+    </div>
+  </section>
+
+  <style>
+      .dashboard-content {
+      background-color: #ffffff; /* Light background */
+      padding: 4rem 0; /* Add padding for spacing */
+      border-radius: 15px; /* Rounded corners for the section */
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+      min-width: 150vh;
+      min-height: auto;
+    }
+    .search-bar {
+      width: 100%;
+      max-width: 400px;
+      margin-bottom: 2rem;
+    }
+    .search-bar input {
+      border: 1px solid #ddd;
+      border-radius: 50px;
+      padding: 0.75rem 1.5rem;
+      font-size: 1rem;
+      transition: border-color 0.3s ease;
+    }
+    .search-bar input:focus {
+      border-color: #1e3c72;
+      box-shadow: 0 0 5px rgba(30, 60, 114, 0.5);
+    }
+    .table-responsive {
+      border-radius: 15px;
+      overflow: hidden;
+    }
+    .table {
+      background-color: #ffffff;
+      border: none;
+      border-radius: 15px;
+    }
+    .table thead th {
+      background-color: #1e3c72;
+      color: #fff;
+      border: none;
+    }
+    .table tbody tr:hover {
+      background-color: #f1f1f1;
+    }
+    .btn-custom {
+      background-color: #1e3c72;
+      border: none;
+      color: #fff;
+      font-weight: 600;
+      padding: 0.5rem 1rem;
+      border-radius: 50px;
+      transition: background-color 0.3s ease;
+    }
+    .btn-custom:hover {
+      background-color: #2a5298;
+    }
+  </style>
+      
+        <!-- Product Cards -->
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    
+</body>
+</html>
