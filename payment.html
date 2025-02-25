@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Payment Checkout</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f9;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .container {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+    h1 {
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+    p {
+      font-size: 16px;
+      margin-bottom: 20px;
+    }
+    button {
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Test Product</h1>
+    <p>This is a test product for demonstration.</p>
+    <p><strong>Price: $10.00</strong></p>
+    <button id="checkout-button">Process Pay</button>
+  </div>
+
+  <script>
+    // Handle the "Process Pay" button click
+    document.getElementById('checkout-button').addEventListener('click', () => {
+      // Send a message to the Telegram bot to initiate payment
+      if (window.Telegram && window.Telegram.WebApp) {
+        Telegram.WebApp.sendData(JSON.stringify({ action: 'process_pay' }));
+      } else {
+        alert('This page is intended to be used within Telegram.');
+      }
+    });
+
+    // Handle the Telegram WebApp close event
+    if (window.Telegram && window.Telegram.WebApp) {
+      Telegram.WebApp.ready();
+      Telegram.WebApp.expand(); // Expand the WebApp to full screen
+    }
+  </script>
+</body>
+</html>
