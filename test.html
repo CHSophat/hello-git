@@ -1,235 +1,159 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Responsive Table</title>
-  <!-- Bootstrap 5 CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-  <!-- Font Awesome Icons -->
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-  <style>
-    /* Custom Styles */
-    body {
-      font-family: 'Arial', sans-serif;
-      background-color: #f9f9f9;
-      color: #333;
-      min-width: 100vh;
-    }
-    .table-responsive {
-      border-radius: 15px;
-      overflow: hidden;
-      margin-top: 2rem;
-    }
-    .table {
-      background-color: #ffffff;
-      border: none;
-      border-radius: 15px;
-    }
-    .table thead th {
-      background-color: #1e3c72; /* Primary blue for headers */
-      color: #fff;
-      border: none;
-    }
-    .table tbody tr:hover {
-      background-color: #f1f1f1;
-    }
-    .btn-custom {
-      background-color: #1e3c72;
-      border: none;
-      color: #fff;
-      font-weight: 600;
-      padding: 0.5rem 1rem;
-      border-radius: 50px;
-      transition: background-color 0.3s ease;
-    }
-    .btn-custom:hover {
-      background-color: #2a5298;
-    }
-    .badge-status {
-      font-size: 0.8rem;
-      padding: 0.3rem 0.6rem;
-      border-radius: 20px;
-    }
-    .badge-success {
-      background-color: #d4edda;
-      color: #155724;
-    }
-    .badge-warning {
-      background-color: #fff3cd;
-      color: #856404;
-    }
-    .badge-danger {
-      background-color: #f8d7da;
-      color: #721c24;
-    }
-
-    /* Responsive Adjustments */
-    @media (max-width: 768px) {
-      .table thead th,
-      .table tbody td {
-        font-size: 0.9rem;
-        padding: 0.5rem;
-      }
-      .btn-custom {
-        padding: 0.3rem 0.75rem;
-        font-size: 0.8rem;
-      }
-    }
-
-    /* Mobile-Friendly Table */
-    @media (max-width: 576px) {
-      .table-responsive {
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
-      }
-      .table thead th {
-        white-space: nowrap;
-      }
-      .table tbody td {
-        white-space: nowrap;
-      }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ministry of Public Works and Transport</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Khmer&display=swap" rel="stylesheet">
 </head>
+<style>
+    body {
+        font-family: Arial, serif;
+        margin: 0;
+        font-family: 'Khmer', sans-serif;
+        min-width: 70vh
+    }
+    
+    header {
+        background-color: #003366;
+        color: white;
+        padding: 10px;
+        text-align: center;
+    }
+    
+    .logo {
+        float: left;
+        width: 100px;
+        height: auto;
+    }
+    
+    nav ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background-color: #003366;
+    }
+    
+    nav li {
+        float: left;
+    }
+    
+    nav li a {
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+    }
+    
+    nav li a.active {
+        background-color: #005580;
+    }
+    
+    nav li a:hover {
+        background-color: #005580;
+    }
+    
+    main {
+        padding: 20px;
+    }
+    
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        border: 2px solid #003366;
+    }
+    
+    th, td {
+        border: 1px solid #003366;
+        padding: 8px;
+        text-align: left;
+    }
+    
+    th {
+        background-color: #003366;
+        color: white;
+    }
+
+    /* Responsive styles */
+    @media (max-width: 768px) {
+        .logo {
+            width: 80px;
+        }
+
+        nav ul {
+            flex-direction: column;
+        }
+
+        nav li {
+            width: 100%;
+        }
+
+        nav li a {
+            padding: 10px;
+        }
+
+        table {
+            font-size: 14px;
+        }
+    }
+</style>
 <body>
-  <!-- Dashboard Content -->
-  <section class="container my-5 p-5">
-    <h2 class="text-center mb-5">Student Management System</h2>
-
-    <!-- Search Bar -->
-    <div class="d-flex justify-content-end mb-4">
-      <div class="search-bar" style="max-width: 400px;">
-        <input type="text" class="form-control" placeholder="Search Students..." aria-label="Search">
-      </div>
-    </div>
-
-    <!-- Table -->
-    <div class="table-responsive">
-      <table class="table table-hover">
-        <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">Student Name</th>
-            <th scope="col">Student ID</th>
-            <th scope="col">Class</th>
-            <th scope="col">Email</th>
-            <th scope="col">Phone</th>
-            <th scope="col">Address</th>
-            <th scope="col">Parent/Guardian Name</th>
-            <th scope="col">Date of Birth</th>
-            <th scope="col">Gender</th>
-            <th scope="col">Status</th>
-            <th scope="col">Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td>John Doe</td>
-            <td>STU001</td>
-            <td>Grade 10</td>
-            <td>johndoe@example.com</td>
-            <td>+123 456 7890</td>
-            <td>123 Main St, City</td>
-            <td>Jane Doe</td>
-            <td>2005-05-15</td>
-            <td>Male</td>
-            <td><span class="badge badge-status badge-success">Active</span></td>
-            <td>
-              <div class="btn-group-vertical d-md-inline-flex d-block">
-                <button class="btn btn-sm btn-primary me-md-2 mb-2"><i class="fas fa-plus"></i> Add</button>
-                <button class="btn btn-sm btn-custom me-md-2 mb-2"><i class="fas fa-edit"></i> Update</button>
-                <button class="btn btn-sm btn-danger"><i class="fas fa-trash"></i> Delete</button>
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>Jane Smith</td>
-            <td>STU002</td>
-            <td>Grade 11</td>
-            <td>janesmith@example.com</td>
-            <td>+987 654 3210</td>
-            <td>456 Elm St, Town</td>
-            <td>Michael Smith</td>
-            <td>2006-08-20</td>
-            <td>Female</td>
-            <td><span class="badge badge-status badge-warning">Inactive</span></td>
-            <td>
-              <div class="btn-group-vertical d-md-inline-flex d-block">
-                <button class="btn btn-sm btn-primary me-md-2 mb-2"><i class="fas fa-plus"></i> Add</button>
-                <button class="btn btn-sm btn-custom me-md-2 mb-2"><i class="fas fa-edit"></i> Update</button>
-                <button class="btn btn-sm btn-danger"><i class="fas fa-trash"></i> Delete</button>
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td>Michael Brown</td>
-            <td>STU003</td>
-            <td>Grade 12</td>
-            <td>michaelbrown@example.com</td>
-            <td>+555 555 5555</td>
-            <td>789 Oak St, Village</td>
-            <td>Sarah Brown</td>
-            <td>2004-11-10</td>
-            <td>Male</td>
-            <td><span class="badge badge-status badge-danger">Suspended</span></td>
-            <td>
-              <div class="btn-group-vertical d-md-inline-flex d-block">
-                <button class="btn btn-sm btn-primary me-md-2 mb-2"><i class="fas fa-plus"></i> Add</button>
-                <button class="btn btn-sm btn-custom me-md-2 mb-2"><i class="fas fa-edit"></i> Update</button>
-                <button class="btn btn-sm btn-danger"><i class="fas fa-trash"></i> Delete</button>
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <th scope="row">4</th>
-            <td>Emily Davis</td>
-            <td>STU004</td>
-            <td>Grade 9</td>
-            <td>emilydavis@example.com</td>
-            <td>+111 222 3333</td>
-            <td>321 Pine St, Suburb</td>
-            <td>David Davis</td>
-            <td>2007-03-25</td>
-            <td>Female</td>
-            <td><span class="badge badge-status badge-success">Active</span></td>
-            <td>
-              <div class="btn-group-vertical d-md-inline-flex d-block">
-                <button class="btn btn-sm btn-primary me-md-2 mb-2"><i class="fas fa-plus"></i> Add</button>
-                <button class="btn btn-sm btn-custom me-md-2 mb-2"><i class="fas fa-edit"></i> Update</button>
-                <button class="btn btn-sm btn-danger"><i class="fas fa-trash"></i> Delete</button>
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <th scope="row">5</th>
-            <td>David Wilson</td>
-            <td>STU005</td>
-            <td>Grade 10</td>
-            <td>davidwilson@example.com</td>
-            <td>+444 555 6666</td>
-            <td>654 Birch St, County</td>
-            <td>Lisa Wilson</td>
-            <td>2005-07-12</td>
-            <td>Male</td>
-            <td><span class="badge badge-status badge-warning">Inactive</span></td>
-            <td>
-              <div class="btn-group-vertical d-md-inline-flex d-block">
-                <button class="btn btn-sm btn-primary me-md-2 mb-2"><i class="fas fa-plus"></i> Add</button>
-                <button class="btn btn-sm btn-custom me-md-2 mb-2"><i class="fas fa-edit"></i> Update</button>
-                <button class="btn btn-sm btn-danger"><i class="fas fa-trash"></i> Delete</button>
-              </div>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </section>
-
-  <!-- Bootstrap 5 JS -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <header>
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTSPyp-CbWZhLG83HK6KwxY-OE3UhiEJfaAUw&s" alt="Logo" class="logo">
+        <h1>ក្រសួងសាធារណៈកម្ម និងព័ត៌មានជាតិ</h1>
+        <h2>Ministry of Public Works and Transport</h2>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="#" class="active">ភាសាខ្មែរ</a></li>
+            <li><a href="#">English</a></li>
+        </ul>
+    </nav>
+    <main>
+        <h3>កំណត់លេខ 1U-4230</h3>
+        <table>
+            <tr>
+                <th>ព័ត៌មាន</th>
+                <th>ព័ត៌មាន</th>
+            </tr>
+            <tr>
+                <td>ផ្លាកលេខ</td>
+                <td>កំពង់ចាម 1U-4230</td>
+            </tr>
+            <tr>
+                <td>ប្រភេទ</td>
+                <td>ទោចក្រយានយន្ត</td>
+            </tr>
+            <tr>
+                <td>ពណ៏</td>
+                <td>ខ្មៅ</td>
+            </tr>
+            <tr>
+                <td>លេខម៉ាស៊ីន</td>
+                <td>ND125ME****8237</td>
+            </tr>
+            <tr>
+                <td>លេខតួ</td>
+                <td>ND125ME****8237</td>
+            </tr>
+           
+            <tr>
+                <td>កម្លាំងម៉ាសុីន</td>
+                <td>125CC</td>
+            </tr>
+            <tr>
+                <td>ទំហំសុីឡាំង</td>
+                <td>125</td>
+            </tr>
+          
+            <tr>
+                <td>ឆ្នាំឆ្នាំផលិត</td>
+                <td>2019</td>
+            </tr>
+        </table>
+    </main>
 </body>
 </html>
